@@ -1,0 +1,27 @@
+#titleBar{
+	color: #928a12;
+	height: 50px;
+}
+
+#titleBar #title{
+	margin: 0px;
+	font-size: 35pt;
+	float: left;
+}
+
+#titleBar #user{
+	margin: 0px;
+	font-size: 30pt;
+	float: right;
+}
+
+#gameWindow {
+	position: absolute;
+	background: darkgray;
+	margin-top: 5%;
+	margin-left: 12.5%;
+}
+
+body{
+	background: darkgray;
+}
