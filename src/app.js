@@ -11,6 +11,7 @@ var url = require('url');
 var csrf = require('csurf');
 
 var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/MessengerMVC";
+console.log(process.env.MONGOLAB_URI);
 
 var db = mongoose.connect(dbURL, function(err) {
     if(err) {
