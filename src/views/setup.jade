@@ -1,0 +1,25 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block scripts
+        script(src="/assets/maker.js")
+block body
+  nav(class="navlink")
+    a(href="/login") C-GOL
+    a(href="/logout", style="float: right; margin-right: 100px;") Log out
+    a(href="/history") User History
+  section#makeDomo
+    form#domoForm(class="domoForm", name="domoForm", action="/setup", method="POST")
+      label(for="ruleDieL") Lower bound for Death: 
+      input#domoName(type="text", name="ruleDieL", placeholder="Domo Name")
+      label(for="ruleDieH") Upper Bound for Death: 
+      input#domoAge(type="text", name="ruleDieH", placeholder="Domo Age")
+      label(for="ruleBirth") For Birth:
+      input#domoLvl(type="text", name="ruleBirth", placeholder="Domo Level")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
+      a#makeDomoSubmit(class="makeDomoSubmit", href="#") Create Simulation
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#domo(src="assets/img/domo.png", alt="domo")

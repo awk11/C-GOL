@@ -23,13 +23,14 @@ app.Cell = function() {
 		ctx.restore();
 	}
 	
-	c.checkNeighbors = function(neighbors)
+	c.checkNeighbors = function(neighbors, n1, n2, n3)
 	{
 		var numAlive = 0;
 		var numDead = 0;
-		
+		//console.log("Current Cell: " + this.x + ", " + this.y);
 		for(var i = 0; i < neighbors.length; i++)
 		{
+			//console.log("Neighbor " + i + ": " + neighbors[i].x + ", " + neighbors[i].y);
 			if(neighbors[i].isAlive == 0)
 				numDead++;
 			else
@@ -38,12 +39,12 @@ app.Cell = function() {
 		
 		if(this.isAlive == 1)
 		{
-			if(numAlive < 2 || numAlive > 3)
+			if(numAlive < n1 || numAlive > n2)
 				this.willBeAlive = 0;
 		}
 		else
 		{
-			if(numAlive == 3)
+			if(numAlive == n3)
 				this.willBeAlive = 1;
 		}
 		

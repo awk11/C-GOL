@@ -4,7 +4,6 @@ var app = app || {};
 
 window.onload = function() {
 	console.log("window loaded");
-	app.main.init();
 };
 
 
@@ -12,12 +11,19 @@ app.main = {
 	canvas: undefined,
 	ctx: undefined,
 	cells: undefined,
+	rule1: undefined,
+	rule2: undefined,
+	rule3: undefined,
 	
-	init: function() {
+	init: function(n1, n2, n3) {
 		app.main.canvas = document.getElementById("gameWindow");
 		app.main.canvas.width = Math.round(window.innerWidth*.75);
-		app.main.canvas.height = Math.round(window.innerHeight*.8);
+		app.main.canvas.height = 750//Math.round(window.innerHeight*.8);
 		app.main.ctx = app.main.canvas.getContext('2d');
+		
+		app.main.rule1 = n1;
+		app.main.rule2 = n2;
+		app.main.rule3 = n3;
 		app.main.cells = [];
 		for(var i = 0; i < app.main.canvas.width/5; i++)
 		{
@@ -64,7 +70,7 @@ app.main = {
 				if(i != Math.round(app.main.canvas.width/5)-1 && j != Math.round(app.main.canvas.height/5)-1)
 					cellNeighbors.push(app.main.cells[i+1][j+1]);
 					
-				app.main.cells[i][j].checkNeighbors(cellNeighbors);
+				app.main.cells[i][j].checkNeighbors(cellNeighbors, app.main.rule1, app.main.rule2, app.main.rule3);
 			}
 		}
 		
