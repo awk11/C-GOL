@@ -198,7 +198,7 @@ nav:nth-child(1) {
 
 #errorMessage {
     display:none;
-    top: 500px;
+    top: 600px;
     width: 20%;
     height: 50px;
     position: absolute;
