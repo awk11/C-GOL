@@ -1,13 +1,11 @@
 "use strict";
 
-$(document).ready(function() {
+function handleError(message) {
+	$("#errorMessage").text(message);
+	$("#errorMessage").css({'display': 'block'});
+}
 
-    function handleError(message) {
-        $("#errorMessage").text(message);
-        $("#domoMessage").animate({width:'toggle'},350);
-    }
-    
-    function sendAjax(action, data) {
+function sendAjax(action, data) {
 	$.ajax({
 		cache: false,
 		type: "POST",
@@ -15,7 +13,7 @@ $(document).ready(function() {
 		data: data,
 		dataType: "json",
 		success: function(result, status, xhr) {
-			$("#domoMessage").animate({width:'hide'},350);
+			$("#errorMessage").css({'display': 'none'});
 
 			window.location = result.redirect;
 		},
@@ -26,20 +24,23 @@ $(document).ready(function() {
 		}
 	});        
 }
-    
-    $("#makeDomoSubmit").on("click", function(e) {
-        e.preventDefault();
-    
-        $("#domoMessage").animate({width:'hide'},350);
-    
-        if($("#domoName").val() > $("#domoAge").val()) {
-            handleError("Lower bound must be less than upper bound");
-            return false;
-        }
-		
-        sendAjax($("#domoForm").attr("action"), $("#domoForm").serialize());
-        
-        return false;
-    });
-    
+
+$("#makeSimButton").on("click", function(e) {
+	e.preventDefault();
+
+	$("#errorMessage").css({'display': 'none'});
+
+	if($("#rule1").val() > $("#rule2").val()) {
+		handleError("Lower bound must be less than upper bound");
+		return false;
+	}
+	
+	sendAjax($("#simSetupForm").attr("action"), $("#simSetupForm").serialize());
+	
+	return false;
 });
+
+
+function repeatHistorySim(r1, r2, r3, csrfToken){
+		sendAjax("/setup", "ruleDieL="+r1+"&ruleDieH="+r2+"&ruleBirth="+r3+"&_csrf="+csrfToken);
+}

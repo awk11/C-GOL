@@ -5,21 +5,19 @@ block scripts
         script(src="/assets/maker.js")
 block body
   nav(class="navlink")
-    a(href="/login") C-GOL
+    a(href="/login")
+      img#logo(src="/assets/img/logo.png", alt="logo")
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
     a(href="/history") User History
-  section#makeDomo
-    form#domoForm(class="domoForm", name="domoForm", action="/setup", method="POST")
-      label(for="ruleDieL") Lower bound for Death: 
-      input#domoName(type="text", name="ruleDieL", placeholder="Domo Name")
-      label(for="ruleDieH") Upper Bound for Death: 
-      input#domoAge(type="text", name="ruleDieH", placeholder="Domo Age")
-      label(for="ruleBirth") For Birth:
-      input#domoLvl(type="text", name="ruleBirth", placeholder="Domo Level")
+  section#makeSim
+    form#simSetupForm(class="simForm", name="simForm", action="/setup", method="POST")
+      label(for="ruleDieL") Lower bound for Cell Death:
+      input#rule1(type="text", name="ruleDieL", placeholder="Cells die with fewer neighbors")
+      label(for="ruleDieH") Upper Bound for Cell Death:
+      input#rule2(type="text", name="ruleDieH", placeholder="Cells die with more neighbors")
+      label(for="ruleBirth") For Cell revival:
+      input#rule3(type="text", name="ruleBirth", placeholder="Cells revive with this many neighbors")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
-      a#makeDomoSubmit(class="makeDomoSubmit", href="#") Create Simulation
-  #domoMessage
-    img#speech(src="/assets/img/speech.png", alt="speech box")
+      a#makeSimButton(class="makeSimButton", href="#") Create Simulation
     h3
       span#errorMessage
-    img#domo(src="assets/img/domo.png", alt="domo")

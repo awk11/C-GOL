@@ -1,16 +1,16 @@
 extends ./base.jade
 block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
-    link(rel="stylesheet", type="text/css", href="/assets/appStyle.css")
 block scripts
         script(src="/assets/js/main.js")
         script(src="/assets/js/cell.js")
 block body
   nav(class="navlink")
-    a(href="/login") C-GOL
-    a(href="/setup") Start New Sim
+    a(href="/login")
+      img#logo(src="/assets/img/logo.png", alt="logo")
+    a(href="/setup") Create New Game
     a(href="/history") User History
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
-  a#simStart(class="makeDomoSubmit", onclick="app.main.init("+ sims[sims.length-1].ruleDieL +","+ sims[sims.length-1].ruleDieH +","+ sims[sims.length-1].ruleBirth +")", href="#") Start Sim
-  section
+  a#simRestart(onclick="clearInterval(app.main.intervalID); app.main.init();", href="#") Restart Simulation
+  section#ruleData(data-rule1=sims[sims.length-1].ruleDieL, data-rule2=sims[sims.length-1].ruleDieH, data-rule3=sims[sims.length-1].ruleBirth)
     canvas#gameWindow

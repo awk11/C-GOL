@@ -4,6 +4,7 @@ var app = app || {};
 
 window.onload = function() {
 	console.log("window loaded");
+	app.main.init();
 };
 
 
@@ -14,33 +15,35 @@ app.main = {
 	rule1: undefined,
 	rule2: undefined,
 	rule3: undefined,
+	intervalID: undefined,
 	
-	init: function(n1, n2, n3) {
+	init: function() {
 		app.main.canvas = document.getElementById("gameWindow");
 		app.main.canvas.width = Math.round(window.innerWidth*.75);
 		app.main.canvas.height = 750//Math.round(window.innerHeight*.8);
 		app.main.ctx = app.main.canvas.getContext('2d');
 		
-		app.main.rule1 = n1;
-		app.main.rule2 = n2;
-		app.main.rule3 = n3;
+		var data = document.getElementById('ruleData');
+		app.main.rule1 = data.dataset.rule1;
+		app.main.rule2 = data.dataset.rule2;
+		app.main.rule3 = data.dataset.rule3;
 		app.main.cells = [];
-		for(var i = 0; i < app.main.canvas.width/5; i++)
+		for(var i = 0; i < Math.round(app.main.canvas.width/5); i++)
 		{
 			app.main.cells.push([]);
-			for(var j = 0; j < app.main.canvas.height/5; j++)
+			for(var j = 0; j < Math.round(app.main.canvas.height/5); j++)
 				app.main.cells[i].push(new app.Cell(i, j));
 		}
 		console.log(Math.round(window.innerWidth*.75));
 		console.log(Math.round(window.innerHeight*.9));
 		app.main.update();
-		setInterval(app.main.update, 100);
+		app.main.intervalID = setInterval(app.main.update, 100);
 	},
 	
 	update: function() {
-			for(var i = 0; i < app.main.canvas.width/5; i++)
+			for(var i = 0; i < Math.round(app.main.canvas.width/5); i++)
 			{
-				for(var j = 0; j < app.main.canvas.height/5; j++)
+				for(var j = 0; j < Math.round(app.main.canvas.height/5); j++)
 					app.main.cells[i][j].draw(app.main.ctx);
 			}
 			

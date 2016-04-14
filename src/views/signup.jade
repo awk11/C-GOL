@@ -4,7 +4,7 @@ block append style
 block body
   nav
     a(href="/login")
-      img#logo(src="/assets/img/face.png", alt="face logo")
+      img#logo(src="/assets/img/logo.png", alt="logo")
     .navlink
       a(href="/login") Login
     .navlink
@@ -19,10 +19,7 @@ block body
       input#pass2(type="password", name="pass2", placeholder="retype password")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#signupSubmit(class="formSubmit", href="#") Sign up
-  #domoMessage
-    img#speech(src="/assets/img/speech.png", alt="speech box")
-    h3
-      span#errorMessage
-    img#domo(src="assets/img/domo.png", alt="domo")
+  h3
+    span#errorMessage
 block scripts
         script(src="/assets/client.js")
