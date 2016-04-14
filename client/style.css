@@ -7,43 +7,27 @@ html, body {
 	background: darkgray;
 }
 
-#titleBar{
-	color: #928a12;
-	height: 50px;
-}
-
-#titleBar #title{
-	margin: 0px;
-	font-size: 35pt;
-	float: left;
-}
-
-#titleBar #user{
-	margin: 0px;
-	font-size: 30pt;
-	float: right;
-}
-
 #gameWindow {
 	position: absolute;
 	background: darkgray;
-	margin-top: 5%;
+	margin-top: 100px;
 	margin-left: 12.5%;
 	display: block;
 }
 
-#logo {
-    height: 40px;
-    width: 40;
+#logo, #logo:hover {
+    height: 50px;
+    width: 50px;
     padding-top: 5px;
     float:left;
     border-radius: 8px;
+	background-color: #7d7d7d;
 }
 
 nav {
     width: 100%;
-    height: 50px;
-    background-color: #55acee;
+    height: 70px;
+    background-color: #7d7d7d;
 }
 
 nav:nth-child(1) {
@@ -64,23 +48,23 @@ nav:nth-child(1) {
     text-decoration: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
     transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    background-color: #d5d5d5;
 }
 
 .simForm {
-    border: 2px solid #338acc;
+    border: 2px solid #d5d5d5;
     height: 200px;
     width: 25%;
-	margin-left: 40%;
+	margin-left: 37.5%;
     margin-top:200px;
     padding-top:10px;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -91,7 +75,7 @@ nav:nth-child(1) {
 	margin-bottom: 5px;
     font-size: 1.2em;
     float: left;
-    color: black;
+    color: white;
 }
 
 .simForm input[type=text] {
@@ -108,7 +92,7 @@ nav:nth-child(1) {
     margin-top: 150px;
     font-size: 1.2em;
     width: 140px;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: white;
@@ -124,7 +108,7 @@ nav:nth-child(1) {
     margin-top: 875px;
     font-size: 1.6em;
     width: 8%;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: white;
@@ -134,13 +118,18 @@ nav:nth-child(1) {
 	text-align: center;
 }
 
-.makeSimButton:link, .makeSimButton:visited, .makeDSimButton:hover, .makeSimButton:active {
+#simRestart:hover{
+	background-color: #d5d5d5;
+}
+
+.makeSimButton:link, .makeSimButton:visited, .makeSimButton:hover, .makeSimButton:active {
     color: white;
+	
 }
 
 .makeSimButton:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #d5d5d5;
 }
 
 .formSubmit {
@@ -151,7 +140,7 @@ nav:nth-child(1) {
     margin-top: 14px;
     font-size: 1.2em;
     width: 200px;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: black;
@@ -164,11 +153,11 @@ nav:nth-child(1) {
 
 .formSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #4a949;
 }
 
 .mainForm {
-    height: 100px;
+    height: 125px;
     width: 350px;
     margin: 0 auto;
 	margin-top: 330px;
@@ -176,10 +165,10 @@ nav:nth-child(1) {
 	padding-left: 20px;
 	padding-bottom: 30px;
     font-size: 1.2em;
-	background-color: #55acee;
+	background-color: #7d7d7d;
 	border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
-	border: 2px solid #338acc;
+	border: 2px solid #4a949;
 }
 
 .mainForm h3 {
@@ -204,16 +193,16 @@ nav:nth-child(1) {
 
 #user:focus, #pass:focus, #pass2:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
+    box-shadow: 0px 0px 1px 1px #7d7d7d;
 }
 
 #errorMessage {
     display:none;
-    top: 65%;
+    top: 500px;
     width: 20%;
     height: 50px;
     position: absolute;
-    z-index: 200;
+    z-index: 5;
     overflow: hidden;
 	left: 40%;
 	text-align: center;
@@ -234,7 +223,7 @@ nav:nth-child(1) {
 #historyList {
     width: 40%;
     min-width: 400px;
-    border: 2px solid #55acee;
+    border: 2px solid #7d7d7d;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
@@ -246,9 +235,9 @@ nav:nth-child(1) {
     margin: 0 auto;
     margin-top: 2px;
     margin-bottom: 2px;
-    border: 2px solid #55acee;
+    border: 2px solid #7d7d7d;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #7d7d7d;
     padding: 10px;
     min-height: 60px;
     overflow: hidden;
@@ -258,7 +247,7 @@ nav:nth-child(1) {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+    background-color: #d5d5d5;
 }
 
 img.domoFace {
