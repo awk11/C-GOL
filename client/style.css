@@ -13,6 +13,7 @@ html, body {
 	margin-top: 100px;
 	margin-left: 12.5%;
 	display: block;
+	cursor: pointer;
 }
 
 #logo, #logo:hover {
@@ -120,6 +121,42 @@ nav:nth-child(1) {
 
 #simRestart:hover{
 	background-color: #d5d5d5;
+}
+
+#simPauseButton{
+	display: block;
+	position: absolute;
+	z-index: 5;
+	top: 250px;
+	float: left;
+	left: 100px;
+}
+
+#simPaintButton{
+	display: block;
+	position: absolute;
+	z-index: 5;
+	top: 300px;
+	float: left;
+	left: 100px;
+}
+
+#simEraseButton{
+	display: block;
+	position: absolute;
+	z-index: 5;
+	top: 350px;
+	float: left;
+	left: 100px;
+}
+
+#simClearButton{
+	display: block;
+	position: absolute;
+	z-index: 5;
+	top: 400px;
+	float: left;
+	left: 100px;
 }
 
 .makeSimButton:link, .makeSimButton:visited, .makeSimButton:hover, .makeSimButton:active {

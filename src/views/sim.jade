@@ -11,6 +11,10 @@ block body
     a(href="/setup") Create New Game
     a(href="/history") User History
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
+  button#simPauseButton Pause
+  button#simPaintButton Revive Cells
+  button#simEraseButton Kill Cells
+  button#simClearButton Clear Sim
   a#simRestart(onclick="clearInterval(app.main.intervalID); app.main.init();", href="#") Restart Simulation
   section#ruleData(data-rule1=sims[sims.length-1].ruleDieL, data-rule2=sims[sims.length-1].ruleDieH, data-rule3=sims[sims.length-1].ruleBirth)
     canvas#gameWindow
