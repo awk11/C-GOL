@@ -25,6 +25,12 @@ $("#simEraseButton").on("click", function(e) {
 	app.main.erasing = true;
 });
 
+$("#setups").on("change", function(e) {
+	var s = e.target.value;
+	if(s == 1)
+		app.main.setup1();
+});
+
 $("#simClearButton").on("click", function(e) {
 	e.preventDefault();
 	
@@ -56,8 +62,8 @@ app.main = {
 	
 	init: function() {
 		app.main.canvas = document.getElementById("gameWindow");
-		app.main.canvas.width = Math.round(window.innerWidth*.75);
-		app.main.canvas.height = 750//Math.round(window.innerHeight*.8);
+		app.main.canvas.width = 1440;//Math.round(window.innerWidth*.75);
+		app.main.canvas.height = 750;//Math.round(window.innerHeight*.8);
 		app.main.canvas.onmousedown = app.main.doMouseDown;
 		app.main.canvas.onmousemove = app.main.doMouseMove;
 		app.main.canvas.onmouseup = app.main.doMouseUp;
@@ -173,6 +179,11 @@ app.main = {
 	},
 	
 	setup1: function(){
+		
+		app.main.rule1 = 2
+		app.main.rule2 = 3;
+		app.main.rule3 = 3;
+		
 		for(var i = 0; i < app.main.cells.length; i++)
 		{
 			for (var j = 0; j < app.main.cells[0].length; j++)

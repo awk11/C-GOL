@@ -8,9 +8,7 @@ var router = function(app){
 	app.post("/signup", mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
 	app.get("/logout", mid.requiresLogin, controllers.Account.logout);
 	app.get("/C-GOL", mid.requiresLogin, controllers.Sim.simPage);
-	app.post("/setup", mid.requiresLogin, controllers.Sim.make);
-	app.get("/setup", mid.requiresLogin, controllers.Sim.setupPage);
-	app.get("/history", mid.requiresLogin, controllers.Sim.historyPage);
+	app.post("/C-GOL", mid.requiresLogin, controllers.Sim.make);
 	app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

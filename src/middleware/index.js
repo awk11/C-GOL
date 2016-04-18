@@ -8,7 +8,7 @@ var requiresLogin = function(req, res, next) {
 
 var requiresLogout = function(req, res, next) {
 	if(req.session.account) {
-		return res.redirect('/setup');
+		return res.redirect('/C-GOL');
 	}
 	
 	next();

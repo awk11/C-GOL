@@ -1,8 +1,8 @@
 "use strict";
 
 function handleError(message) {
-	$("#errorMessage").text(message);
-	$("#errorMessage").css({'display': 'block'});
+	$("#simErrorMessage").text(message);
+	$("#simErrorMessage").css({'display': 'block'});
 }
 
 function sendAjax(action, data) {
@@ -13,7 +13,7 @@ function sendAjax(action, data) {
 		data: data,
 		dataType: "json",
 		success: function(result, status, xhr) {
-			$("#errorMessage").css({'display': 'none'});
+			$("#simErrorMessage").css({'display': 'none'});
 
 			window.location = result.redirect;
 		},
@@ -28,7 +28,7 @@ function sendAjax(action, data) {
 $("#makeSimButton").on("click", function(e) {
 	e.preventDefault();
 
-	$("#errorMessage").css({'display': 'none'});
+	$("#simErrorMessage").css({'display': 'none'});
 
 	if($("#rule1").val() > $("#rule2").val()) {
 		handleError("Lower bound must be less than upper bound");
@@ -42,5 +42,5 @@ $("#makeSimButton").on("click", function(e) {
 
 
 function repeatHistorySim(r1, r2, r3, csrfToken){
-		sendAjax("/setup", "ruleDieL="+r1+"&ruleDieH="+r2+"&ruleBirth="+r3+"&_csrf="+csrfToken);
+		sendAjax("/C-GOL", "ruleDieL="+r1+"&ruleDieH="+r2+"&ruleBirth="+r3+"&_csrf="+csrfToken);
 }

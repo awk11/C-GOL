@@ -17,34 +17,6 @@ var simPage = function(req, res){
 	
 };
 
-var setupPage = function(req, res){
-	
-	Sim.SimModel.findByOwner(req.session.account._id, function(err, docs){
-		
-		if(err){
-			console.log(err);
-			return res.status(400).json({error: 'Something weird happened'});
-		}
-		
-		res.render('setup', {csrfToken: req.csrfToken(), sims: docs});
-	});
-	
-};
-
-var historyPage = function(req, res){
-	
-	Sim.SimModel.findByOwner(req.session.account._id, function(err, docs){
-		
-		if(err){
-			console.log(err);
-			return res.status(400).json({error: 'Something weird happened'});
-		}
-		
-		res.render('history', {csrfToken: req.csrfToken(), sims: docs});
-	});
-	
-};
-
 var makeNewSim = function(req, res){
 	
 	if(req.body.ruleDieL > req.body.ruleDieH){
@@ -71,7 +43,5 @@ var makeNewSim = function(req, res){
 	
 };
 
-module.exports.setupPage = setupPage;
-module.exports.historyPage = historyPage;
 module.exports.simPage = simPage;
 module.exports.make = makeNewSim;

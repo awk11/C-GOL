@@ -59,15 +59,17 @@ nav:nth-child(1) {
 }
 
 .simForm {
-    border: 2px solid #d5d5d5;
+	display: block;
+    //border: 2px solid #d5d5d5;
     height: 200px;
-    width: 25%;
-	margin-left: 37.5%;
-    margin-top:200px;
-    padding-top:10px;
-    background-color: #7d7d7d;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
+    width: 360px;
+	//margin-left: 15px;
+    margin-top:300px;
+    //padding-top:10px;
+    //background-color: #7d7d7d;
+    //border-bottom-right-radius: 4px;
+    //border-top-right-radius: 4px;
+	float: left;
 }
 
 .simForm label {
@@ -90,15 +92,15 @@ nav:nth-child(1) {
 	position: absolute;
     transition: background-color 0.4s ease;
     display: block;
-    margin-top: 150px;
+    margin-top: 250px;
     font-size: 1.2em;
-    width: 140px;
+    width: 135px;
     background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: white;
     text-decoration: none;
-    margin-left: 315px;
+    margin-left: 15px;
     padding: 5px;
 }
 
@@ -106,15 +108,15 @@ nav:nth-child(1) {
 	position: absolute;
     transition: background-color 0.4s ease;
     display: block;
-    margin-top: 875px;
-    font-size: 1.6em;
-    width: 8%;
+    margin-top: 250px;
+    font-size: 1.3em;
+    width: 150px;
     background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: white;
     text-decoration: none;
-    margin-left: 46%;
+    margin-left: 30px;
     padding: 5px;
 	text-align: center;
 }
@@ -127,36 +129,36 @@ nav:nth-child(1) {
 	display: block;
 	position: absolute;
 	z-index: 5;
-	top: 250px;
+	top: 150px;
 	float: left;
-	left: 100px;
+	left: 30px;
 }
 
 #simPaintButton{
 	display: block;
 	position: absolute;
 	z-index: 5;
-	top: 300px;
+	top: 200px;
 	float: left;
-	left: 100px;
+	left: 30px;
 }
 
 #simEraseButton{
 	display: block;
 	position: absolute;
 	z-index: 5;
-	top: 350px;
+	top: 200px;
 	float: left;
-	left: 100px;
+	left: 130px;
 }
 
 #simClearButton{
 	display: block;
 	position: absolute;
 	z-index: 5;
-	top: 400px;
+	top: 150px;
 	float: left;
-	left: 100px;
+	left: 120px;
 }
 
 .makeSimButton:link, .makeSimButton:visited, .makeSimButton:hover, .makeSimButton:active {
@@ -167,6 +169,14 @@ nav:nth-child(1) {
 .makeSimButton:hover {
     transition: background-color 0.4s ease;
     background-color: #d5d5d5;
+}
+
+#setups{
+	display: block;
+	position: absolute;
+	float: left;
+	top: 335px;
+	left: 25px;
 }
 
 .formSubmit {
@@ -249,6 +259,22 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
+#simErrorMessage {
+    display:none;
+    top: 700px;
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    z-index: 5;
+    overflow: hidden;
+	left: 15px;
+	text-align: center;
+	font-size: 1em;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
+}
+
 #speech {
     height: 120px;
     width: 250px;
@@ -258,17 +284,21 @@ nav:nth-child(1) {
 
 
 #historyList {
-    width: 40%;
-    min-width: 400px;
+    width: 10%;
+	float: right;
     border: 2px solid #7d7d7d;
     border-radius: 4px;
     margin: 0 auto;
-    margin-top: 100px;
+    //margin-top: 50px;
+	margin-right: 25px;
 	background-color: white;
+	max-height: 750px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .historyItem {
-    width: 95%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -287,58 +317,17 @@ nav:nth-child(1) {
     background-color: #d5d5d5;
 }
 
-img.domoFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
-}
-
 h3.emptyHistory {
-    width: 400px;
-    font-size: 1.5em;
+    width: 80%;
+    font-size: 1em;
     margin: 0 auto;
     text-align: center;
     margin-top: 18px;
 }
 
-h3.rule1 {
+p.rule {
     float: left;
-    width: 200px;
     font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
-	margin-bottom: 0px;
-}
-
-h3.rule2 {
-    text-align: left;
-    width: 200px;
-    font-weight: bold;
-    padding-right: 40px;
-	padding-left: 65px;
-    font-size: 1.5em;
-	margin-top: 60px;
-	margin-bottom: 10px;
-}
-
-h3.rule3 {
-    float: right;
-    text-align: left;
-    width: 250px;
-    font-weight: bold;
-	margin-top: 40px;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-.historyItem:first-child {
-    margin-top: 10px;
-}
-
-.historyItem:last-child {
-    margin-bottom:10px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
