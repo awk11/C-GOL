@@ -53,13 +53,6 @@ app.main = {
 	painting: false,
 	erasing: false,
 	
-	placeBlinker: false,
-	placeGlider: false,
-	placeSpaceship: false,
-	placeGliderGun: false,
-	placePulsar: false,
-	placeEater: false,
-	
 	
 	init: function() {
 		app.main.canvas = document.getElementById("gameWindow");
@@ -177,6 +170,158 @@ app.main = {
 	
 	doMouseOut: function(e) {
 		app.main.painting = false;
+	},
+	
+	setup1: function(){
+		for(var i = 0; i < app.main.cells.length; i++)
+		{
+			for (var j = 0; j < app.main.cells[0].length; j++)
+			{
+				app.main.cells[i][j].isAlive = 0;
+				app.main.cells[i][j].willBeAlive = 0;
+			}
+		}
+		
+		app.main.cells[52][43].isAlive = 1;
+		app.main.cells[52][43].willBeAlive = 1;		
+		
+		app.main.cells[52][44].isAlive = 1;
+		app.main.cells[52][44].willBeAlive = 1;	
+		
+		app.main.cells[53][43].isAlive = 1;
+		app.main.cells[53][43].willBeAlive = 1;
+		
+		app.main.cells[53][44].isAlive = 1;
+		app.main.cells[53][44].willBeAlive = 1;
+		
+		app.main.cells[62][43].isAlive = 1;
+		app.main.cells[62][43].willBeAlive = 1;
+		
+		app.main.cells[62][44].isAlive = 1;
+		app.main.cells[62][44].willBeAlive = 1;
+		
+		app.main.cells[62][45].isAlive = 1;
+		app.main.cells[62][45].willBeAlive = 1;
+		
+		app.main.cells[63][42].isAlive = 1;
+		app.main.cells[63][42].willBeAlive = 1;
+		
+		app.main.cells[63][46].isAlive = 1;
+		app.main.cells[63][46].willBeAlive = 1;
+		
+		app.main.cells[64][41].isAlive = 1;
+		app.main.cells[64][41].willBeAlive = 1;
+		
+		app.main.cells[64][47].isAlive = 1;
+		app.main.cells[64][47].willBeAlive = 1;
+		
+		app.main.cells[65][41].isAlive = 1;
+		app.main.cells[65][41].willBeAlive = 1;
+		
+		app.main.cells[65][47].isAlive = 1;
+		app.main.cells[65][47].willBeAlive = 1;
+		
+		app.main.cells[66][44].isAlive = 1;
+		app.main.cells[66][44].willBeAlive = 1;
+		
+		app.main.cells[67][42].isAlive = 1;
+		app.main.cells[67][42].willBeAlive = 1;
+		
+		app.main.cells[67][46].isAlive = 1;
+		app.main.cells[67][46].willBeAlive = 1;
+		
+		app.main.cells[68][43].isAlive = 1;
+		app.main.cells[68][43].willBeAlive = 1;
+		
+		app.main.cells[68][44].isAlive = 1;
+		app.main.cells[68][44].willBeAlive = 1;
+		
+		app.main.cells[68][45].isAlive = 1;
+		app.main.cells[68][45].willBeAlive = 1;
+		
+		app.main.cells[69][44].isAlive = 1;
+		app.main.cells[69][44].willBeAlive = 1;
+		
+		app.main.cells[72][41].isAlive = 1;
+		app.main.cells[72][41].willBeAlive = 1;
+		
+		app.main.cells[72][42].isAlive = 1;
+		app.main.cells[72][42].willBeAlive = 1;
+		
+		app.main.cells[72][43].isAlive = 1;
+		app.main.cells[72][43].willBeAlive = 1;
+		
+		app.main.cells[73][41].isAlive = 1;
+		app.main.cells[73][41].willBeAlive = 1;
+		
+		app.main.cells[73][42].isAlive = 1;
+		app.main.cells[73][42].willBeAlive = 1;
+		
+		app.main.cells[73][43].isAlive = 1;
+		app.main.cells[73][43].willBeAlive = 1;
+		
+		app.main.cells[74][40].isAlive = 1;
+		app.main.cells[74][40].willBeAlive = 1;
+		
+		app.main.cells[74][44].isAlive = 1;
+		app.main.cells[74][44].willBeAlive = 1;
+		
+		app.main.cells[76][39].isAlive = 1;
+		app.main.cells[76][39].willBeAlive = 1;
+		
+		app.main.cells[76][40].isAlive = 1;
+		app.main.cells[76][40].willBeAlive = 1;
+		
+		app.main.cells[76][44].isAlive = 1;
+		app.main.cells[76][44].willBeAlive = 1;
+		
+		app.main.cells[76][45].isAlive = 1;
+		app.main.cells[76][45].willBeAlive = 1;
+		
+		app.main.cells[86][41].isAlive = 1;
+		app.main.cells[86][41].willBeAlive = 1;
+		
+		app.main.cells[86][42].isAlive = 1;
+		app.main.cells[86][42].willBeAlive = 1;
+		
+		app.main.cells[87][42].isAlive = 1;
+		app.main.cells[87][42].willBeAlive = 1;
+		
+		app.main.cells[87][41].isAlive = 1;
+		app.main.cells[87][41].willBeAlive = 1;
+		
+		app.main.cells[159][132].isAlive = 1;
+		app.main.cells[159][132].willBeAlive = 1;
+		
+		app.main.cells[159][133].isAlive = 1;
+		app.main.cells[159][133].willBeAlive = 1;
+		
+		app.main.cells[160][132].isAlive = 1;
+		app.main.cells[160][132].willBeAlive = 1;
+		
+		app.main.cells[161][133].isAlive = 1;
+		app.main.cells[161][133].willBeAlive = 1;
+		
+		app.main.cells[161][134].isAlive = 1;
+		app.main.cells[161][134].willBeAlive = 1;
+		
+		app.main.cells[161][135].isAlive = 1;
+		app.main.cells[161][135].willBeAlive = 1;
+		
+		app.main.cells[162][135].isAlive = 1;
+		app.main.cells[162][135].willBeAlive = 1;
+	},
+	
+	
+	printOut: function() {
+		for(var i = 0; i < app.main.cells.length; i++)
+		{
+			for (var j = 0; j < app.main.cells[0].length; j++)
+			{
+				if(app.main.cells[i][j].isAlive)
+					console.log("i= " + i + ", j= " + j);
+			}
+		}
 	}
 	
 };
