@@ -75,3 +75,13 @@ app.listen(port, function(err) {
     console.log('Listening on port ' + port);
 });
 
+io.on('connection', function(socket) {
+	console.log(socket.query.name);
+	socket.join(socket.query.name);
+	
+	
+	socket.on('disconnect', function(data) {
+		socket.leave(socket.query.name);
+	});
+});
+
