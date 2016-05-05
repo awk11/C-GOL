@@ -2,19 +2,22 @@ extends ./base.jade
 block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block scripts
+        script(src="/socket.io/socket.io.js")
         script(src="/assets/js/main.js")
         script(src="/assets/js/cell.js")
         script(src="/assets/maker.js")
-        script(src="/socket.io/socket.io.js")
 block body
   nav(class="navlink")
-    a(href="/login")
-      img#logo(src="/assets/img/logo.png", alt="logo")
+    img#logo(src="/assets/img/logo.png", alt="logo")
+    label(for="sRoom") Simulation Room:
+    input#socketInput(type="text", name="sRoom", placeholder="Enter a friends username to join their simulation")
+    a(onclick="io.connect('', {query: 'name='+document.getElementById('socketInput').value})", style="margin-left: 5px;") Join
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
   button#simPauseButton Pause
-  button#simPaintButton Revive Cells
-  button#simEraseButton Kill Cells
+  button#simPaintButton Kill Cells
   button#simClearButton Clear Sim
+  h3#simPauseState Playing
+  h3#simDrawState Reviving Cells
   a#simRestart(onclick="clearInterval(app.main.intervalID); app.main.init();", href="#") Restart Current Simulation
   select#setups
     option(value=0) Select a Setup

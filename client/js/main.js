@@ -9,6 +9,7 @@ window.onload = function() {
 
 $("#simPauseButton").on("click", function(e) {
 	e.preventDefault();
+
 	
 	app.main.isPaused = !app.main.isPaused;
 });
@@ -16,13 +17,9 @@ $("#simPauseButton").on("click", function(e) {
 $("#simPaintButton").on("click", function(e) {
 	e.preventDefault();
 	
-	app.main.erasing = false;
-});
-
-$("#simEraseButton").on("click", function(e) {
-	e.preventDefault();
-	
-	app.main.erasing = true;
+	app.main.isPaused = true;
+		
+	app.main.erasing = !app.main.erasing;
 });
 
 $("#setups").on("change", function(e) {
@@ -58,6 +55,7 @@ app.main = {
 	isPaused: false,
 	painting: false,
 	erasing: false,
+	socket: undefined,
 	
 	
 	init: function() {
@@ -81,10 +79,14 @@ app.main = {
 			for(var j = 0; j < Math.round(app.main.canvas.height/5); j++)
 				app.main.cells[i].push(new app.Cell(i, j));
 		}
-		console.log(Math.round(window.innerWidth*.75));
-		console.log(Math.round(window.innerHeight*.9));
 		app.main.update();
 		app.main.intervalID = setInterval(app.main.update, 100);
+		
+		app.main.socket = io.connect('', {query: "name="+"test"});
+		
+		app.main.socket.on('connect', function () {
+			
+		}); 
 	},
 	
 	update: function() {
@@ -98,6 +100,29 @@ app.main = {
 		if(!app.main.isPaused)
 		{	
 			app.main.cycleCells();
+		}
+		
+			
+		if(app.main.isPaused)
+		{
+			document.getElementById("simPauseButton").innerHTML = "Resume";
+			document.getElementById("simPauseState").innerHTML = "Paused";
+		}
+		else
+		{
+			document.getElementById("simPauseButton").innerHTML = "Pause";
+			document.getElementById("simPauseState").innerHTML = "Playing";
+		}
+		
+		if(app.main.erasing)
+		{
+			document.getElementById("simPaintButton").innerHTML = "Revive Cells";
+			document.getElementById("simDrawState").innerHTML = "Killing Cells";
+		}
+		else
+		{
+			document.getElementById("simPaintButton").innerHTML = "Kill Cells";
+			document.getElementById("simDrawState").innerHTML = "Reviving Cells";
 		}
 	},
 	

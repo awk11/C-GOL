@@ -9,6 +9,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var url = require('url');
 var csrf = require('csurf');
+var io = require('socket.io')(app);
 
 var dbURL = process.env.MONGODB_URI || "mongodb://localhost/C-GOL";
 
