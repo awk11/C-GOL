@@ -1,5 +1,5 @@
 var path = require('path'); 
-var express = require('express'); 
+var express = require('express');
 var compression = require('compression'); 
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser'); 
@@ -9,7 +9,8 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var url = require('url');
 var csrf = require('csurf');
-var io = require('socket.io')(app);
+
+
 
 var dbURL = process.env.MONGODB_URI || "mongodb://localhost/C-GOL";
 
@@ -69,20 +70,27 @@ app.use(function (err, req, res, next) {
 
 router(app);
 
-app.listen(port, function(err) {
+//var http = require('http').Server(app);
+
+
+//http.listen(80);
+
+var http = app.listen(port, function(err) {
     if (err) {
       throw err;
     }
     console.log('Listening on port ' + port);
 });
 
+var io = require('socket.io')(http);
+
 io.on('connection', function(socket) {
-	console.log(socket.query.name);
-	socket.join(socket.query.name);
+	console.log(socket.request._query['name']);
+	socket.join(socket.request._query['name']);
 	
 	
 	socket.on('disconnect', function(data) {
-		socket.leave(socket.query.name);
+		socket.leave(socket.request._query['name']);
 	});
 });
 
