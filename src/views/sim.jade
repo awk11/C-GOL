@@ -10,8 +10,8 @@ block body
   nav(class="navlink")
     img#logo(src="/assets/img/logo.png", alt="logo")
     label(for="sRoom") Simulation Room:
-    input#socketInput(type="text", name="sRoom", placeholder=user+"Enter a friends username to join their simulation", data-username=user)
-    a(onclick="io.connect('', {query: 'room='+document.getElementById('socketInput').value}, {query: 'user='+user})", style="margin-left: 5px;") Join
+    input#socketInput(type="text", name="sRoom", placeholder="Enter a friends username to join their simulation", data-username=user)
+    a(onclick="io.connect('', {query: 'room='+document.getElementById('socketInput').value+'&user="+user+"'})", style="margin-left: 5px; cursor: pointer;") Join
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
   button#simPauseButton Pause
   button#simPaintButton Kill Cells
