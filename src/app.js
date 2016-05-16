@@ -77,19 +77,35 @@ var http = app.listen(port, function(err) {
     console.log('Listening on port ' + port);
 });
 
-var io = require('socket.io')(http);
-var users = { };
-io.on('connection', function(socket) {
-	console.log(socket.request._query['room']);
-	socket.join(socket.request._query['room']);
-	console.log(socket.request._query['user']);
-	users[socket.request._query['user']] = socket.request._query['user'];
-	console.log('There are ' + (Object.keys(users).length) + ' user(s) online');
-	
-	
-	socket.on('disconnect', function(data) {
-		socket.leave(socket.request._query['room']);
-		delete users[socket.name];
-	});
-});
+//var io = require('socket.io')(http);
+//var users = { };
+//io.on('connection', function(socket) {
+//	console.log(socket.request._query['room']);
+//	socket.join(socket.request._query['room']);
+//	console.log(socket.request._query['user']);
+//	users[socket.request._query['user']] = socket.request._query['user'];
+//	console.log('There are ' + (Object.keys(users).length) + ' user(s) online');
+//	
+//	socket.on('update', function(cells, room){
+//		//put room name in data and use that to update by room
+//		//data must include:
+//		//-room name(host username)
+//		//-cells array
+//		//-rules
+//		//-user history
+//		//-bools for pausing and drawing
+//		
+//		io.sockets.in(room).emit('getUpdate', cells);
+//	});
+//	
+//	socket.on('selectSetup', function(data){
+//		//requires room name and setup selected
+//	});
+//	
+//	
+//	socket.on('disconnect', function(data) {
+//		socket.leave(socket.request._query['room']);
+//		delete users[socket.name];
+//	});
+//});
 

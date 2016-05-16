@@ -4,8 +4,7 @@ var app = app || {};
 
 window.onload = function() {
 	console.log("window loaded");
-	app.main.username = document.getElementById('socketInput').dataset.username;
-	app.main.socket = io.connect('', {query: "room="+app.main.username+"&user="+app.main.username});
+	//app.main.socket = io.connect('', {query: "room="+app.main.username+"&user="+app.main.username});
 	app.main.init();
 };
 
@@ -59,6 +58,7 @@ app.main = {
 	erasing: false,
 	socket: undefined,
 	username: undefined,
+	//host: true,
 	
 	
 	init: function() {
@@ -71,8 +71,9 @@ app.main = {
 		app.main.canvas.onmouseout = app.main.doMouseOut;
 		app.main.ctx = app.main.canvas.getContext('2d');
 		
+		
+		app.main.username = document.getElementById('socketInput').dataset.username;
 		var data = document.getElementById('ruleData');
-		//app.main.username = document.getElementById('socketInput').dataset.username;
 		app.main.rule1 = data.dataset.rule1;
 		app.main.rule2 = data.dataset.rule2;
 		app.main.rule3 = data.dataset.rule3;
@@ -86,25 +87,32 @@ app.main = {
 		app.main.update();
 		app.main.intervalID = setInterval(app.main.update, 100);
 		
-		//app.main.socket = io.connect('', {query: "room="+app.main.username+"&user="+app.main.username});
+		//app.main.socket.on('connect', function () {
+		//	app.main.host = false;
+		//}); 
 		
-		app.main.socket.on('connect', function () {
-			
-		}); 
 	},
 	
 	update: function() {
+		
+		//app.main.socket.on('getUpdate', function(cellData){
+		//	console.log("here");
+		//	app.main.cells = cellData;
+		//});
 		
 		for(var i = 0; i < Math.round(app.main.canvas.width/5); i++)
 		{
 			for(var j = 0; j < Math.round(app.main.canvas.height/5); j++)
 				app.main.cells[i][j].draw(app.main.ctx);
 		}
-		
+			
 		if(!app.main.isPaused)
 		{	
 			app.main.cycleCells();
 		}
+		
+		//app.main.socket.emit('update', app.main.cells, app.main.username);
+		
 		
 			
 		if(app.main.isPaused)
@@ -128,6 +136,7 @@ app.main = {
 			document.getElementById("simPaintButton").innerHTML = "Kill Cells";
 			document.getElementById("simDrawState").innerHTML = "Reviving Cells";
 		}
+		
 	},
 	
 	cycleCells: function() {
