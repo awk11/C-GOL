@@ -12,7 +12,7 @@ var simPage = function(req, res){
 			return res.status(400).json({error: 'Something weird happened'});
 		}
 		
-		res.render('sim', {csrfToken: req.csrfToken(), sims: docs});
+		res.render('sim', {csrfToken: req.csrfToken(), sims: docs, user: req.session.account.username});
 	});
 	
 };

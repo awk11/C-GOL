@@ -70,11 +70,6 @@ app.use(function (err, req, res, next) {
 
 router(app);
 
-//var http = require('http').Server(app);
-
-
-//http.listen(80);
-
 var http = app.listen(port, function(err) {
     if (err) {
       throw err;
@@ -83,14 +78,18 @@ var http = app.listen(port, function(err) {
 });
 
 var io = require('socket.io')(http);
-
+var users = { };
 io.on('connection', function(socket) {
-	console.log(socket.request._query['name']);
-	socket.join(socket.request._query['name']);
+	console.log(socket.request._query['room']);
+	socket.join(socket.request._query['room']);
+	console.log(socket.request._query['user']);
+	users[socket.request._query['user']] = socket.request._query['user'];
+	console.log('There are ' + (Object.keys(users).length) + ' user(s) online');
 	
 	
 	socket.on('disconnect', function(data) {
-		socket.leave(socket.request._query['name']);
+		socket.leave(socket.request._query['room']);
+		delete users[socket.name];
 	});
 });
 

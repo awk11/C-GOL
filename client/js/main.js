@@ -56,6 +56,7 @@ app.main = {
 	painting: false,
 	erasing: false,
 	socket: undefined,
+	username: undefined,
 	
 	
 	init: function() {
@@ -69,6 +70,7 @@ app.main = {
 		app.main.ctx = app.main.canvas.getContext('2d');
 		
 		var data = document.getElementById('ruleData');
+		app.main.username = document.getElementById('socketInput').dataset.username;
 		app.main.rule1 = data.dataset.rule1;
 		app.main.rule2 = data.dataset.rule2;
 		app.main.rule3 = data.dataset.rule3;
@@ -82,7 +84,7 @@ app.main = {
 		app.main.update();
 		app.main.intervalID = setInterval(app.main.update, 100);
 		
-		app.main.socket = io.connect('', {query: "name="+"test"});
+		app.main.socket = io.connect('', {query: "room="+app.main.username}, {query: "user="+app.main.username+""});
 		
 		app.main.socket.on('connect', function () {
 			
