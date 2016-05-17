@@ -80,7 +80,7 @@ app.main = {
 	rule2: undefined,	//the second rule (as defined before)
 	rule3: undefined,	//the third rule (as defined before)
 	intervalID: undefined,	//the id connected to the update loop, used to help stop it when the simulation is paused
-	isPaused: true,		//bool stating whether or not the simulation is paused. True means yes, false means no
+	isPaused: false,		//bool stating whether or not the simulation is paused. True means yes, false means no
 	painting: false,	//bool used to clarify whether the user is actively reviving cells
 	erasing: false,		//bool used for determing whether the player is in revive or kill mode. false means revive
 	username: undefined,	//the username of the user
