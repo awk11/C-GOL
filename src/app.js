@@ -1,3 +1,4 @@
+//gets all of the libraries
 var path = require('path'); 
 var express = require('express');
 var compression = require('compression'); 
@@ -11,9 +12,10 @@ var url = require('url');
 var csrf = require('csurf');
 
 
-
+//attachs app to the mongo database
 var dbURL = process.env.MONGODB_URI || "mongodb://localhost/C-GOL";
 
+//connects to the database
 var db = mongoose.connect(dbURL, function(err) {
     if(err) {
         console.log("Could not connect to database");
@@ -21,6 +23,7 @@ var db = mongoose.connect(dbURL, function(err) {
     }
 });
 
+//connects the app to redis
 var redisURL = {
 	hostname: 'localhost',
 	port: 6379
@@ -33,12 +36,18 @@ if(process.env.REDISCLOUD_URL) {
 	redisPASS = redisURL.auth.split(":")[1];
 }
 
+//sets up router
 var router = require('./router.js'); 
 
+//defines the port, which will depend on where the server is being run
 var port = process.env.PORT || process.env.NODE_PORT || 3000;
 
+//attaches express
 var app = express();
+//moves all of the client side stuff to an assets folder while on the server
 app.use('/assets', express.static(path.resolve(__dirname + '/../client')));
+
+//sets up all the app session stuff
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
@@ -70,6 +79,7 @@ app.use(function (err, req, res, next) {
 
 router(app);
 
+//sets up the actual server
 var http = app.listen(port, function(err) {
     if (err) {
       throw err;
@@ -77,6 +87,8 @@ var http = app.listen(port, function(err) {
     console.log('Listening on port ' + port);
 });
 
+
+//the fallen socket.io code, lost to the waves of time, or rather lack of time
 //var io = require('socket.io')(http);
 //var users = { };
 //io.on('connection', function(socket) {

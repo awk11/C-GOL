@@ -1,6 +1,8 @@
 var controllers = require('./controllers'); 
 var mid = require('./middleware');
 
+//connects everything on the server side together
+//specified functions get called when certain requests are made
 var router = function(app){
 	app.get("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 	app.post("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.login);

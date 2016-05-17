@@ -59,8 +59,10 @@ nav:nth-child(1) {
     background-color: #d5d5d5;
 }
 
-.navlink label {
-	margin-left: 35%;
+.navlink #welcome {
+	margin-left: 40%;
+	float: left;
+	max-width: 500px;
 }
 .navlink #socketInput{
 	width: 290px;
@@ -94,15 +96,15 @@ nav:nth-child(1) {
 	position: absolute;
     transition: background-color 0.4s ease;
     display: block;
-    margin-top: 250px;
+    margin-top: 280px;
     font-size: 1.2em;
-    width: 135px;
+    max-width: 175px;
     background-color: #7d7d7d;
     border-radius: 2px;
     padding: 3px 0px;
     color: white;
     text-decoration: none;
-    margin-left: 15px;
+    margin-left: 20px;
     padding: 5px;
 }
 
@@ -333,7 +335,7 @@ nav:nth-child(1) {
     border-radius: 4px;
     background-color: #7d7d7d;
     padding: 10px;
-    min-height: 60px;
+    max-height: 60px;
     overflow: hidden;
 }
 
@@ -357,4 +359,5 @@ p.rule {
     font-weight: bold;
 	margin-top: 4px;
 	margin-bottom: 4px;
+	color: white;
 }

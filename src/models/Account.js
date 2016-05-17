@@ -1,12 +1,15 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
+//the account model
 var AccountModel;
 var iterations = 10000;
 var saltLength = 64;
 var keyLength = 64;
 
+//the account schema
 var AccountSchema = new mongoose.Schema({
+	//the accounts username
     username: {
         type: String,
         required: true,
@@ -20,11 +23,13 @@ var AccountSchema = new mongoose.Schema({
 		required: true
 	},
     
+	//the accounts password
     password: {
         type: String,
         required: true
     },
     
+	//the accounts meta data
     createdData: {
         type: Date,
         default: Date.now
@@ -32,6 +37,7 @@ var AccountSchema = new mongoose.Schema({
 
 });
 
+//sends the account in json format
 AccountSchema.methods.toAPI = function() {
     return {
         username: this.username,
@@ -39,6 +45,7 @@ AccountSchema.methods.toAPI = function() {
     };
 };
 
+//validates the users password
 AccountSchema.methods.validatePassword = function(password, callback) {
 	var pass = this.password;
 	
@@ -50,6 +57,7 @@ AccountSchema.methods.validatePassword = function(password, callback) {
 	});
 };
 
+//user look up based on their username
 AccountSchema.statics.findByUsername = function(name, callback) {
 
     var search = {
@@ -59,6 +67,7 @@ AccountSchema.statics.findByUsername = function(name, callback) {
     return AccountModel.findOne(search, callback);
 };
 
+//makes account more secure with some encryption
 AccountSchema.statics.generateHash = function(password, callback) {
 	var salt = crypto.randomBytes(saltLength);
 	
@@ -67,6 +76,7 @@ AccountSchema.statics.generateHash = function(password, callback) {
 	});
 };
 
+//authenticates the account
 AccountSchema.statics.authenticate = function(username, password, callback) {
 	return AccountModel.findByUsername(username, function(err, doc) {
 
@@ -90,8 +100,9 @@ AccountSchema.statics.authenticate = function(username, password, callback) {
 	});
 };
 
+//attaches the schema to the model
 AccountModel = mongoose.model('Account', AccountSchema);
 
-
+//exports everything
 module.exports.AccountModel = AccountModel;
 module.exports.AccountSchema = AccountSchema;

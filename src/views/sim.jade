@@ -2,16 +2,13 @@ extends ./base.jade
 block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block scripts
-        script(src="/socket.io/socket.io.js")
         script(src="/assets/js/main.js")
         script(src="/assets/js/cell.js")
         script(src="/assets/maker.js")
 block body
   nav(class="navlink")
-    img#logo(src="/assets/img/logo.png", alt="logo")
-    label(for="sRoom") Simulation Room:
-    input#socketInput(type="text", name="sRoom", placeholder="Enter a friends username to join their simulation", data-username=user)
-    a(onclick="io.connect('', {query: 'room='+document.getElementById('socketInput').value+'&user="+user+"'})", style="margin-left: 5px; cursor: pointer;") Join
+    img#logo(src="/assets/img/logo.png", alt="logo", data-username=user)
+    h2#welcome Welcome user!
     a(href="/logout", style="float: right; margin-right: 100px;") Log out
   button#simPauseButton Pause
   button#simPaintButton Kill Cells
@@ -22,16 +19,20 @@ block body
   select#setups
     option(value=0) Select a Setup
     option(value=1) Glider Gun Demo
+    option(value=2) Line Pattern Demo
+    option(value=3) So many Blinkers! Demo
+    option(value=4) R-pentomino Demo
 
   form#simSetupForm(class="simForm", name="simForm", action="/C-GOL", method="POST")
     label(for="ruleDieL") Lower bound for Cell Death:
-    input#rule1(type="text", name="ruleDieL", placeholder="Cells die with fewer neighbors")
+    input#rule1(type="text", name="ruleDieL", placeholder="Cells die with fewer neighbors", value="2")
     label(for="ruleDieH") Upper Bound for Cell Death:
-    input#rule2(type="text", name="ruleDieH", placeholder="Cells die with more neighbors")
+    input#rule2(type="text", name="ruleDieH", placeholder="Cells die with more neighbors", value="3")
     label(for="ruleBirth") For Cell revival:
-    input#rule3(type="text", name="ruleBirth", placeholder="Cells revive with this many neighbors")
+    input#rule3(type="text", name="ruleBirth", placeholder="Cells revive with this many neighbors", value="3")
+    input#simName(type="text", name="name", placeholder="Save Simulation As")
     input(type="hidden", name="_csrf", value="#{csrfToken}")
-    a#makeSimButton(class="makeSimButton", href="#") Reset Simulation
+    a#makeSimButton(class="makeSimButton", href="#") Save New Simulation
   h3
     span#simErrorMessage
 
@@ -41,14 +42,12 @@ block body
   else
     section#ruleData(data-rule1=sims[sims.length-1].ruleDieL, data-rule2=sims[sims.length-1].ruleDieH, data-rule3=sims[sims.length-1].ruleBirth)
       canvas#gameWindow
-  h2(style="color: white; display: block; margin-top: 125px; margin-left: 1700px;") Rule History
+  h2(style="color: white; display: block; margin-top: 125px; margin-left: 1700px;") Saved Simulations
   section#historyList
     if !sims || sims.length == 0
         div.history
-            h3.emptyHistory No Simulations Have Been Done Yet
+            h3.emptyHistory There are no saved simulations
     else
-        each val, index in sims.reverse()
-            div.historyItem(onclick="repeatHistorySim("+val.ruleDieL+","+val.ruleDieH+","+val.ruleBirth+","+"\"#{csrfToken}\""+");")
-                p.rule Lower Bound for Cell Death: #{val.ruleDieL}
-                p.rule Upper Bound for Cell Death: #{val.ruleDieH}
-                p.rule For Cell revival: #{val.ruleBirth}
+        each val, index in sims
+            div.historyItem(onclick="app.main.setup(["+val.dataX+"],["+val.dataY+"],"+val.ruleDieL+","+val.ruleDieH+","+val.ruleBirth+");")
+                p.rule #{val.name}
