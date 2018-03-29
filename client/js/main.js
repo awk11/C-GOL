@@ -1,6 +1,5 @@
 "use strict";
 
-
 //the main app for the client, contains everything most of the client side
 var app = app || {};
 
