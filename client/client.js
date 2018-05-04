@@ -23,9 +23,9 @@ $(document).ready(function() {
                 window.location = result.redirect;
             },
             error: function(xhr, status, error) {
-                var messageObj = JSON.parse(xhr.responseText);
+                //var messageObj = JSON.parse(xhr.responseText);
             
-                handleError(messageObj.error);
+                handleError(xhr.responseText);
             }
         });
     }
