@@ -49,7 +49,7 @@ AccountSchema.methods.toAPI = function() {
 AccountSchema.methods.validatePassword = function(password, callback) {
 	var pass = this.password;
 	
-	crypto.pbkdf2(password, this.salt, iterations, keyLength, function(err, hash) {
+	crypto.pbkdf2(password, this.salt, iterations, keyLength, 'sha1', function(err, hash) {
 		if(hash.toString('hex') !== pass) {
 			return callback(false);
 		}
@@ -71,7 +71,7 @@ AccountSchema.statics.findByUsername = function(name, callback) {
 AccountSchema.statics.generateHash = function(password, callback) {
 	var salt = crypto.randomBytes(saltLength);
 	
-	crypto.pbkdf2(password, salt, iterations, keyLength, function(err, hash){
+	crypto.pbkdf2(password, salt, iterations, keyLength, 'sha1', function(err, hash){
 		return callback(salt, hash.toString('hex'));
 	});
 };
